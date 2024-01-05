@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 public class BankingProject {
 	
-	 private static String username = null;
-	    private static int password = 0;
-	    private static int balance = 0;
+	
 
 	public static void login() {
 		Scanner scan = new Scanner(System.in);
@@ -30,7 +28,7 @@ public class BankingProject {
 	public static void main(String[] args) {
 		boolean run = true;
 		int balance = 0;
-		
+
 		Scanner scanner = new Scanner(System.in);
 		while (run) {
 			System.out.println("-------------------------------------");
@@ -43,10 +41,10 @@ public class BankingProject {
 				
 				System.out.println("회원가입");
 				System.out.println("아이디");
-				username = scanner.nextLine();
+				String username = scanner.nextLine();
 				
 				System.out.println("비밀번호");
-				password = Integer.parseInt(scanner.nextLine());
+				int password = Integer.parseInt(scanner.nextLine());
 				
 				System.out.printf("회원가입 완료");
 				System.out.printf(username, password);
