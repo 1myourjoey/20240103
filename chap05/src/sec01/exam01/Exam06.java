@@ -8,9 +8,7 @@ public class Exam06 {
 		boolean run = true;
 		int studentNum = 0;
 		int[] scores = null;
-		double max = 0;
-		double avg = 0;
-		double total = 0;
+		
 		Scanner scan = new Scanner(System.in);
 
 		while (run) {
@@ -32,11 +30,21 @@ public class Exam06 {
 					System.out.print("scores[" + i + "]");
 					scores[i] = Integer.parseInt(scan.nextLine());
 				}
+				
 			} else if (selectNo == 3) {
-				for(int i=0;i<scores.length;i++) {
-				System.out.println(scores[i]);}
-
+//				for(int i=0;i<scores.length;i++) {
+//				System.out.println(scores[i]);}
+//				
+				for (int list : scores) {
+					System.out.println(list);
+				}
+				
+				
+				
 			} else if (selectNo == 4) {
+				double max = 0;
+				double avg = 0;
+				double total = 0;
 				for (double num : scores) {
 					if (max < num) {
 						max = num;
