@@ -1,8 +1,9 @@
 package quiz;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-class Account extends MakeMenu {
+class Account extends MakeMenu implements Serializable{
 
 	String name;
 	String id;

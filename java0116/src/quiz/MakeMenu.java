@@ -1,5 +1,11 @@
 package quiz;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,12 +14,12 @@ public class MakeMenu {
 
 	static void menu1() {
 
-		System.out.println("1. 회원출력|2. 회원등록|3. 입금|4. 출금|5. 잔고|6. 종료");
+		System.out.println("1. 회원출력|2. 회원등록|3. 입출금 및 잔고|4. 파일저장|5. 파일읽기|6. 종료");
 	}
 
 	static List<Person> personList = new ArrayList<>();
 
-	static class Person {
+	static class Person implements Serializable{
 		String name;
 		String id;
 		String pw;
@@ -21,7 +27,7 @@ public class MakeMenu {
 		int pn;
 		int balance;
 
-		public Person(String name, String id, String pw, int tel, int pn, int balance) {
+		public Person (String name, String id, String pw, int tel, int pn, int balance) {
 			super();
 			this.name = name;
 			this.id = id;
@@ -39,7 +45,7 @@ public class MakeMenu {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Account ac = new Account();
 		Scanner scan = new Scanner(System.in);
 		boolean start = true;
@@ -73,18 +79,28 @@ public class MakeMenu {
 				break;
 
 			case 3:
-				System.out.println("<예금>");
+				System.out.println("<은행 입출금 및 잔고>");
 				ac.deposit(scan);
 				break;
 
 			case 4:
-				System.out.println("<출금>");
-				ac.withdraw(scan);
+				System.out.println("<파일저장>");
+				FileOutputStream fos = new FileOutputStream("c:/temp/acc.db");
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(personList);
+				oos.flush();
+				oos.close();
 				break;
 
 			case 5:
-				System.out.println("<잔고확인>");
-				ac.check(scan);
+				System.out.println("<파일읽기>");
+				FileInputStream fis = new FileInputStream("c:/temp/acc.db");
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				personList = (List<Person>) ois.readObject();
+				for(Person person : personList) {
+					System.out.println(person);
+				}
+				
 				break;
 
 			case 6:
