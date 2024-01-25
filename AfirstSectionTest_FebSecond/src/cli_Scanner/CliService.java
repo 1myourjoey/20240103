@@ -131,23 +131,39 @@ public class CliService {
 	    }
 	}
 
-	void methodUpdate() throws ClassNotFoundException, SQLException {
+	void methodUpdate()  {
 		String url = "jdbc:mysql://localhost:3306/firm";
 		String id = "root";
 		String pass = "mysql";
 		Scanner scan = new Scanner(System.in);
-		System.out.print("부서번호:");
-		int deptno = Integer.parseInt(scan.nextLine());
-		System.out.print("부서이름:");
-		String dname = scan.nextLine();
-		System.out.print("부서위치:");
-		String loc = scan.nextLine();
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(url, id, pass);
-		Statement stmt = conn.createStatement();
-		String sql = "update dept set dname = '" + dname + "', loc = '" + loc + "' where deptno = " + deptno;
+		System.out.print("사원번호:");
+		int empno = Integer.parseInt(scan.nextLine());
+		System.out.print("사원이름:");
+		String ename = scan.nextLine();
+		System.out.print("사원직위:");
+		String job = scan.nextLine();
+		Connection conn=null;
+		Statement stmt=null;
+		String sql = "update emp set ename = '" + ename + "', job = '" + job + "' where empno = " + empno;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(url, id, pass);
+			stmt = conn.createStatement();
+		} catch (ClassNotFoundException e) {
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 		System.out.println(sql);
-		int result = stmt.executeUpdate(sql);
+		int result=0;
+		try {
+			result = stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (result == 1) {
 			System.out.println("수정 성공!");
 		} else {
@@ -192,15 +208,7 @@ public class CliService {
 				break;
 			case 5:
 				System.out.println("회원 정보 수정");
-				try {
-					cl.methodUpdate();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				cl.methodUpdate();
 			case 6:
 				System.out.println("종료합니다.");
 				return;
