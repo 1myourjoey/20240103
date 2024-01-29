@@ -88,10 +88,44 @@ public class CliService {
 		}
 	}
 
-	void methodInsert(int empno, String ename, int deptno) {
-		
+	void methodInsert(int empno, String ename,String job, int deptno) {
+		String url = "jdbc:mysql://localhost:3306/firm";
+	    String id = "root";
+	    String pass = "mysql";
+	    
+	    Connection conn = null;
+	    Statement stmt = null;
+
+	    try {
+	        conn = DriverManager.getConnection(url, id, pass);
+	        stmt = conn.createStatement();
+
+	        String sql = "INSERT INTO emp (empno, ename, job, deptno) VALUES (" + empno + ", '" + ename + "', '" + job + "', " + deptno + ")";
+
+	        int result = stmt.executeUpdate(sql);
+
+	        if (result == 1) {
+	            System.out.println("추가 성공!");
+	        } else {
+	            System.out.println("추가 실패!");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
 			
-		}
+		
 	
 
 	void methodDelete(int empno) {
@@ -131,46 +165,42 @@ public class CliService {
 	    }
 	}
 
-	void methodUpdate()  {
-		String url = "jdbc:mysql://localhost:3306/firm";
-		String id = "root";
-		String pass = "mysql";
-		Scanner scan = new Scanner(System.in);
-		System.out.print("사원번호:");
-		int empno = Integer.parseInt(scan.nextLine());
-		System.out.print("사원이름:");
-		String ename = scan.nextLine();
-		System.out.print("사원직위:");
-		String job = scan.nextLine();
-		Connection conn=null;
-		Statement stmt=null;
-		String sql = "update emp set ename = '" + ename + "', job = '" + job + "' where empno = " + empno;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(url, id, pass);
-			stmt = conn.createStatement();
-		} catch (ClassNotFoundException e) {
-			}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		System.out.println(sql);
-		int result=0;
-		try {
-			result = stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (result == 1) {
-			System.out.println("수정 성공!");
-		} else {
-			System.out.println("수정 실패!");
-		}
+	void methodUpdate(int empno, String ename, String job) {
+	    String url = "jdbc:mysql://localhost:3306/firm";
+	    String id = "root";
+	    String pass = "mysql";
+	    Connection conn = null;
+	    Statement stmt = null;
 
+	    try {
+	        conn = DriverManager.getConnection(url, id, pass);
+	        stmt = conn.createStatement();
+
+	        String sql = "UPDATE emp SET ename = '" + ename + "', job = '" + job + "' WHERE empno = " + empno;
+
+	        int result = stmt.executeUpdate(sql);
+
+	        if (result == 1) {
+	            System.out.println("수정 성공!");
+	        } else {
+	            System.out.println("수정 실패 - 해당 사원 번호를 찾을 수 없습니다.");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
+
 
 
 	public static void main(String[] ar) {
@@ -196,19 +226,40 @@ public class CliService {
 
 			case 3:
 				System.out.println("회원 삽입");
-				System.out.println("새로운 회원을 사번을 입력하시오.");
+				System.out.print("새로운 회원의 사번을 입력하세요: ");
+				int newEmpno = Integer.parseInt(scan.nextLine());
+				System.out.print("새로운 회원의 이름을 입력하세요: ");
+				String newEname = scan.nextLine();
+				System.out.print("새로운 회원의 직위를 입력하세요: ");
+				String newJob = scan.nextLine();
+				System.out.print("새로운 회원의 부서 번호를 입력하세요: ");
+				int newDeptno = Integer.parseInt(scan.nextLine());
+
+				cl.methodInsert(newEmpno, newEname, newJob, newDeptno);
 				
 				break;
 			case 4:
 				System.out.println("회원 삭제");
-				System.out.println("삭제할 사번을 입력하시오.");
+				System.out.println("삭제할 사원의 사번을 입력하시오.");
 			
 				int empno = Integer.parseInt(scan.nextLine());
 				cl.methodDelete(empno);
 				break;
+	
 			case 5:
-				System.out.println("회원 정보 수정");
-				cl.methodUpdate();
+			    System.out.println("회원 정보 수정");
+			    System.out.print("수정할 사원의 사번을 입력하세요: ");
+			    int updateEmpno = Integer.parseInt(scan.nextLine());
+			    
+			    System.out.print("새로운 사원 이름을 입력하세요: ");
+			    String updateEname = scan.nextLine();
+			    
+			    System.out.print("새로운 사원 직무를 입력하세요: ");
+			    String updateJob = scan.nextLine();
+			    
+			    cl.methodUpdate(updateEmpno, updateEname, updateJob);
+			    break;
+
 			case 6:
 				System.out.println("종료합니다.");
 				return;
