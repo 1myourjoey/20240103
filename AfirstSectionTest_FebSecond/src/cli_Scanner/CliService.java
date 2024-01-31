@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class CliService {
-	void methodEveryone() {
+	void methodEMPList() {
 		String url = "jdbc:mysql://localhost:3306/firm";
 		String id = "root";
 		String pass = "mysql";
@@ -22,8 +22,10 @@ public class CliService {
 			conn = DriverManager.getConnection(url, id, pass);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
+			System.out.println("사원번호 |     이름     |     직위    |  MGR  |   입사년월    |   연봉      |   커미션   | 부서코드");
 			while (rs.next()) {
-				System.out.printf("%-5s / %-10s / %-10s / %-5s / %-10s / %-10.2f / %-5s / %-5s%n", rs.getInt("empno"),
+				
+				System.out.printf("%-5s | %-10s | %-10s | %-5s | %-10s | %-10.2f | %-5s | %-5s%n", rs.getInt("empno"),
 						rs.getString("ename"), rs.getString("job"), rs.getString("mgr"), rs.getString("hiredate"),
 						rs.getDouble("sal"), rs.getString("comm"), rs.getInt("deptno"));
 			}
@@ -56,13 +58,13 @@ public class CliService {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-
+		System.out.println("사원번호 |     이름     |     직위    |  MGR  |   입사년월    |   연봉      |   커미션   | 부서코드");
 		try {
 			conn = DriverManager.getConnection(url, id, pass);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				System.out.printf("%-5s / %-10s / %-10s / %-5s / %-10s / %-10.2f / %-5s / %-5s%n", rs.getInt("empno"),
+				System.out.printf("%-5s | %-10s | %-10s | %-5s | %-10s | %-10.2f | %-5s | %-5s%n", rs.getInt("empno"),
 						rs.getString("ename"), rs.getString("job"), rs.getString("mgr"), rs.getString("hiredate"),
 						rs.getDouble("sal"), rs.getString("comm"), rs.getInt("deptno"));
 
@@ -88,7 +90,7 @@ public class CliService {
 		}
 	}
 
-	void methodInsert(int empno, String ename,String job, int deptno) {
+	void methodInsert(int empno, String ename,String job,int mgr, String hiredate,int sal, int comm , int deptno) {
 		String url = "jdbc:mysql://localhost:3306/firm";
 	    String id = "root";
 	    String pass = "mysql";
@@ -100,7 +102,8 @@ public class CliService {
 	        conn = DriverManager.getConnection(url, id, pass);
 	        stmt = conn.createStatement();
 
-	        String sql = "INSERT INTO emp (empno, ename, job, deptno) VALUES (" + empno + ", '" + ename + "', '" + job + "', " + deptno + ")";
+	        String sql = "insert into emp (empno, ename, job, mgr, hiredate, sal, comm , deptno) VALUES "
+	        		+ "(" + empno + ", '" + ename + "', '" + job + "'," + mgr + ",'" + hiredate + "'," + sal + "," + comm + ", " + deptno + ")";
 
 	        int result = stmt.executeUpdate(sql);
 
@@ -141,9 +144,9 @@ public class CliService {
 	        stmt = conn.createStatement();
 	        int result = stmt.executeUpdate(sql);
 	        if (result >= 1) {
-	            System.out.println("삭제 성공: " + result + "행이 삭제되었습니다.");
+	            System.out.println("삭제 성공: 중복된" + result + "행이 삭제되었습니다.");
 	        } else {
-	            System.out.println("삭제된 행이 없습니다.");
+	            System.out.println("삭제할 사원번호가 없습니다.");
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -165,7 +168,7 @@ public class CliService {
 	    }
 	}
 
-	void methodUpdate(int empno, String ename, String job) {
+	void methodUpdate(int empno, String ename,String job,int mgr, String hiredate,int sal, int comm , int deptno) {
 	    String url = "jdbc:mysql://localhost:3306/firm";
 	    String id = "root";
 	    String pass = "mysql";
@@ -176,7 +179,7 @@ public class CliService {
 	        conn = DriverManager.getConnection(url, id, pass);
 	        stmt = conn.createStatement();
 
-	        String sql = "UPDATE emp SET ename = '" + ename + "', job = '" + job + "' WHERE empno = " + empno;
+	        String sql = "UPDATE emp SET ename = '" + ename + "', job = '" + job + "',mgr = '" + mgr + "',hiredate = '" + hiredate + "',sal = '" + sal + "',comm = '" + comm + "' WHERE empno = " + empno;
 
 	        int result = stmt.executeUpdate(sql);
 
@@ -215,7 +218,8 @@ public class CliService {
 			switch (num) {
 
 			case 1:
-				cl.methodEveryone();
+				cl.methodEMPList();
+				
 				break;
 
 			case 2:
@@ -232,10 +236,18 @@ public class CliService {
 				String newEname = scan.nextLine();
 				System.out.print("새로운 회원의 직위를 입력하세요: ");
 				String newJob = scan.nextLine();
-				System.out.print("새로운 회원의 부서 번호를 입력하세요: ");
+				System.out.print("새로운 회원의 부서 번호(10,20,30)를 입력하세요: ");
 				int newDeptno = Integer.parseInt(scan.nextLine());
+				System.out.print("새로운 회원의 MGR 번호를 입력하세요: ");
+				int newMgr = Integer.parseInt(scan.nextLine());
+				System.out.print("새로운 회원의 고용날짜(0000-00-00)를 입력하세요: ");
+				String newHiredate = scan.nextLine();
+				System.out.print("새로운 회원의 임금을 입력하세요: ");
+				int newSal = Integer.parseInt(scan.nextLine());
+				System.out.print("새로운 회원의 커미션을 입력하세요: ");
+				int newComm = Integer.parseInt(scan.nextLine());
 
-				cl.methodInsert(newEmpno, newEname, newJob, newDeptno);
+				cl.methodInsert(newEmpno, newEname, newJob,newMgr,newHiredate,newSal,newComm,newDeptno);
 				
 				break;
 			case 4:
@@ -248,16 +260,29 @@ public class CliService {
 	
 			case 5:
 			    System.out.println("회원 정보 수정");
+			    
 			    System.out.print("수정할 사원의 사번을 입력하세요: ");
 			    int updateEmpno = Integer.parseInt(scan.nextLine());
 			    
-			    System.out.print("새로운 사원 이름을 입력하세요: ");
+			    System.out.print("새로운 회원 이름을 입력하세요: ");
 			    String updateEname = scan.nextLine();
 			    
-			    System.out.print("새로운 사원 직무를 입력하세요: ");
+			    System.out.print("새로운 회원 직위를 입력하세요: ");
 			    String updateJob = scan.nextLine();
 			    
-			    cl.methodUpdate(updateEmpno, updateEname, updateJob);
+			    System.out.print("새로운 회원의 부서 번호(10,20,30)를 입력하세요: ");
+				int updateDeptno = Integer.parseInt(scan.nextLine());
+				
+				System.out.print("새로운 회원의 MGR 번호를 입력하세요: ");
+				int updateMgr = Integer.parseInt(scan.nextLine());
+				System.out.print("새로운 회원의 고용날짜(0000-00-00)를 입력하세요: ");
+				String updateHiredate = scan.nextLine();
+				System.out.print("새로운 회원의 임금을 입력하세요: ");
+				int updateSal = Integer.parseInt(scan.nextLine());
+				System.out.print("새로운 회원의 커미션을 입력하세요: ");
+				int updateComm = Integer.parseInt(scan.nextLine());
+			    
+			    cl.methodUpdate(updateEmpno, updateEname, updateJob,updateMgr,updateHiredate,updateSal,updateComm, updateDeptno);
 			    break;
 
 			case 6:
