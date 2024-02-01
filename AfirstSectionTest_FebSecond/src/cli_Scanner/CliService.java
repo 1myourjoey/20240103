@@ -210,6 +210,7 @@ public class CliService {
 		Scanner scan = new Scanner(System.in);
 		int num;
 		CliService cl = new CliService();
+		
 
 		while (true) {
 			System.out.println("선택할 메뉴 번호를 입력하시오.");
