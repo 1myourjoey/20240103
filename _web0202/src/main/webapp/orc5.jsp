@@ -20,11 +20,11 @@
         <th>총점</th><th>평균</th>
     </tr>
 <%
-String url = "jdbc:oracle:thin:@localhost:1521:xe";
-Class.forName("oracle.jdbc.driver.OracleDriver");
-    try ( 
-    		Connection conn = DriverManager.getConnection(
-            		url, "scott", "tiger");
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	try ( 
+	Connection conn = DriverManager.getConnection(
+    "jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
+	Statement stmt = conn.createStatement();
     	PreparedStatement pstmt = conn.prepareStatement("select * from score");
         ResultSet rs = pstmt.executeQuery();
     ) {

@@ -1,0 +1,48 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+  
+  @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&family=Sixtyfour&display=swap');
+
+i.fa-500px {
+    font-size: 100px;
+    font-variant-position: normal;}
+html {
+    font-size: 30px;
+}
+
+h1 {
+    font-weight: bold;
+    color: blue;
+    text-align: center;
+    font-size: 3rem;
+}
+p{
+    font-size: 0.8rem;
+}
+p span {
+    font-weight: bold;
+    color: red;
+    font-size: 1.2rem;
+}
+
+article {
+    font-size: 20px;
+}
+article h2 {
+    
+font-family: 'Sixtyfour', sans-serif;
+    font-size: 3em;
+    text-align: center;
+}
+article p { color: black;
+    font-size: 3em;
+    text-align: right;
+}
+article span {
+   
+    font-family: 'Protest Riot', sans-serif;
+    text-align: center;
+    color: blueviolet;
+    font-size: 2em;
+    
+}
