@@ -36,7 +36,7 @@
     Class.forName("com.mysql.cj.jdbc.Driver");
     try (
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/firm", "root", "mysql");
+                "jdbc:mysql://localhost:3306/project1", "root", "mysql");
         Statement stmt = conn.createStatement();
     
         // 쿼리 실행
@@ -48,12 +48,7 @@
 %>         
         <tr>
             <td><%=rs.getInt("num")%></td>
-            <td style="text-align:left;">.
-            
-            .
-            .
-            
-            
+            <td style="text-align:left;">
                 <a href="view.jsp?num=<%=rs.getInt("num")%>">
                     <%=rs.getString("title")%>
                 </a>
