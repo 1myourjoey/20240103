@@ -1,32 +1,6 @@
-<%@page import="java.net.URLEncoder"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="dao.MemberDao"%>
-<%@page import="dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%
-    String id = request.getParameter("id");
-    String email = request.getParameter("email");
-    String rememberMe = request.getParameter("rememberMe");
-
-    // 아이디 기억하기 처리
-    if (rememberMe != null && rememberMe.equals("on")) {
-        // 쿠키에 아이디 저장
-        Cookie cookie = new Cookie("rememberedId", URLEncoder.encode(id, "UTF-8"));
-        cookie.setMaxAge(30 * 24 * 60 * 60); // 쿠키 유효 기간 설정 (예: 30일)
-        response.addCookie(cookie);
-    } else {
-        // 체크가 해제되었을 경우 쿠키 삭제
-        Cookie cookie = new Cookie("rememberedId", "");
-        cookie.setMaxAge(0); // 쿠키 삭제
-        response.addCookie(cookie);
-    }
-%>
-
+    
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="assets/js/color-modes.js"></script>
@@ -37,11 +11,9 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.115.4">
     <title>Signin Template · Bootstrap v5.3</title>
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
-
-    
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -178,26 +150,25 @@
 
     
 <main class="form-signin w-100 m-auto">
-  <form action = "loginprocess.jsp" method="post">
+  <form action="sessionLogin.jsp" method="post">
     <img class="mb-4" src="assets/brand/door-open.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
-     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" name="id" placeholder="아이디">
-        <label for="floatingInput">아이디</label>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" name="id" placeholder="아이디">
+      <label for="floatingInput">아이디</label>
     </div>
-       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingPassword" name="email" placeholder="이메일">
-        <label for="floatingPassword">이메일</label>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingPassword" name="email" placeholder="이메일">
+      <label for="floatingPassword">이메일</label>
     </div>
 
     <div class="form-check text-start my-3">
-   <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
-   <label class="form-check-label" for="rememberMe">
-      아이디 기억하기
-   </label>
-</div>
-
+      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        아이디 기억하기
+      </label>
+    </div>
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
   </form>
