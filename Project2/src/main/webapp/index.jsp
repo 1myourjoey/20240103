@@ -29,7 +29,7 @@
             </ul>
 
             <ul class="util">
-                <li><a href="#">Contact</a></li>
+                <li><a href="list.jsp">MANAGE For ADMIN</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="login.do">Login</a></li>
                 <li><a href="#">Join</a></li>

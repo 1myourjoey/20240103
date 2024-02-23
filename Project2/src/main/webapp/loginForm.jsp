@@ -4,21 +4,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 로그인</title>
+<style type="text/css">
+div{
+	margin : 10px 10px;
+	
+}
+input {
+	width: 100%;
+}
+#divdid {
+color : red;}
+#divdemail {
+	color : blue;
+}
+#login {
+	float: right;
+	background-color: #000;
+	color: white;
+}
+
+</style>
 </head>
 <body>
 <form action="login.jsp" method="post">
-<div>
+<div id="divdid">
 
-<label for="id">ID</label>
+<label >ID</label>
 <input type = "text" name="id" id="id">
 </div>
-<div>
-<label for="id">EMAIL</label>
+
+<div id="divdemail">
+<label >EMAIL</label>
 <input type = "text" name="email" id="email">
 </div>
 
-<button type = "submit" > 로그인 </button>
+<button type = "submit" id="login" > 로그인 </button>
 
 
 
