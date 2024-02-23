@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
 import dao.MemberDao;
+import dto.ArticlePage;
 import dto.Board;
 import dto.Member;
 
@@ -55,9 +56,19 @@ public class DispatcherServlet extends HttpServlet {
 		String path = uri.substring(uri.lastIndexOf("/"));
 		if (path.equals("/list.do")) {
 			BoardDao dao = BoardDao.getInstance();
-			ArrayList<Board> list = dao.selectList();
+//			ArrayList<Board> list = dao.selectList();
 			// 포워딩 작업
-			request.setAttribute("list", list);
+//			request.setAttribute("list", list);
+			String pageNoVal = request.getParameter("pageNo");
+			int pageNo = 1;
+			if (pageNoVal != null) {
+				pageNo = Integer.parseInt(pageNoVal);
+			}
+			int total = dao.selectCount();
+			ArrayList<Board> list = dao.select((pageNo - 1) * 5, 5);
+			ArticlePage articlePage = new ArticlePage(total, pageNo, 5, list);
+			request.setAttribute("articlePage", articlePage);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/list.jsp");
 			dispatcher.forward(request, response);
 
@@ -83,7 +94,7 @@ public class DispatcherServlet extends HttpServlet {
 			if (member != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("member", member);
-				response.sendRedirect("index.jsp"); // 이렇게 보내면 상단의 list로 가서 다시 view까지 실행되는 것
+				response.sendRedirect("list.do"); // 이렇게 보내면 상당의 list로 가서 다시 view까지 실행되는 것
 			} else {
 				response.sendRedirect("loginForm.jsp");
 			}
@@ -91,11 +102,32 @@ public class DispatcherServlet extends HttpServlet {
 		} else if (path.equals("/logout.do")) {
 			HttpSession session = request.getSession(false);
 			session.invalidate();
-			response.sendRedirect("index.jsp");
-			
+			response.sendRedirect("loginForm.jsp");
+
 		} else if (path.equals("/loginForm.do")) { // 위에꺼랑 같은 것
 			response.sendRedirect("loginForm.jsp");
-		} 
-		
+
+		} else if (path.equals("/write.do")) {
+			// 글 번호 값 얻기, 주어지지 않았으면 0으로 설정
+			String tmp = request.getParameter("num");
+			int num = (tmp != null && tmp.length() > 0) ? Integer.parseInt(tmp) : 0;
+			String action = "insert.do";
+			Board board = null;
+			// 글 번호가 주어졌으면, 글 수정 모드
+			if (num > 0) {
+				BoardDao dao = BoardDao.getInstance();
+				board = dao.selectOne(num, false);
+				{
+					// 글 수정 모드일 때는 저장 버튼을 누르면 UPDATE 실행
+					action = "update.jsp?num=" + num;
+				}
+				
+			}
+			request.setAttribute("board", board);
+			request.setAttribute("action", action);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/write.jsp");
+			dispatcher.forward(request, response);
+		}
+
 	}
 }
