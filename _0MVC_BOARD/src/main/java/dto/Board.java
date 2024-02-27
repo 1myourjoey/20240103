@@ -1,34 +1,15 @@
 package dto;
 
 public class Board {
-	private int num;
-	private String writer;
-	private String title;
-	private String content;
-	private String regtime;
-	private int hits;
-	
-	public Board() {}
-	
-	public Board(String writer, String title, String content) {
-		this(0, writer, title, content, "", 0);
-//		this.writer = writer;
-//		this.title = title;
-//		this.content = content;
-	}
-
-	public Board(int num, String writer, String title, String content) {
-		this(num, writer, title, content, "", 0);
-	}
-	
-	public Board(int num, String writer, String title, String content, String regtime, int hits) {
-		this.num = num;
-		this.writer = writer;
-		this.title = title;
-		this.content = content;
-		this.regtime = regtime;
-		this.hits = hits;
-	}
+    private int num;
+    private String title;
+    private String content;
+    private String regtime;
+    private int hits;
+    private int memberno;
+    private String name;
+    
+    public Board() {}
 
 	public int getNum() {
 		return num;
@@ -36,14 +17,6 @@ public class Board {
 
 	public void setNum(int num) {
 		this.num = num;
-	}
-
-	public String getWriter() {
-		return writer;
-	}
-
-	public void setWriter(String writer) {
-		this.writer = writer;
 	}
 
 	public String getTitle() {
@@ -78,12 +51,47 @@ public class Board {
 		this.hits = hits;
 	}
 
-	@Override
-	public String toString() {
-		return "Board [num=" + num + ", writer=" + writer + ", title=" + title + ", content=" + content + ", regtime="
-				+ regtime + ", hits=" + hits + "]";
+	public int getMemberno() {
+		return memberno;
+	}
+
+	public void setMemberno(int memberno) {
+		this.memberno = memberno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Board(int num, String title, String content, String regtime, int hits, int memberno, String name) {
+		super();
+		this.num = num;
+		this.title = title;
+		this.content = content;
+		this.regtime = regtime;
+		this.hits = hits;
+		this.memberno = memberno;
+		this.name = name;
 	}
 	
+	public Board(int num, String title, String content, int memberno) {
+		super();
+		this.num = num;
+		this.title = title;
+		this.content = content;
+		this.memberno = memberno;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [num=" + num + ", title=" + title + ", content=" + content + ", regtime=" + regtime + ", hits="
+				+ hits + ", memberno=" + memberno + ", name=" + name + "]";
+	}    
 	
-	
+
+ 
 }

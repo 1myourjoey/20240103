@@ -1,6 +1,12 @@
+<%@page import="dto.Member"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+// 세션에서 로그인 정보를 가져옴
+HttpSession session1 = request.getSession(false);
+Member member = (session1 != null) ? (Member) session1.getAttribute("member") : null;
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,9 +33,16 @@
             </ul>
 
             <ul class="util">
+            <li><a href="manage/manage.jsp">MANAGE For ADMIN</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Help</a></li>
-                <li><a href="login.do">Login</a></li>
+               <% if (member != null) { %>
+                    <!-- 로그인된 경우 -->
+                    <li><a href="logout.do">Logout</a></li>
+                <% } else { %>
+                    <!-- 로그인되지 않은 경우 -->
+                    <li><a href="login.do">Login</a></li>
+                <% } %>
                 <li><a href="#">Join</a></li>
                 <li><a href="#">Sitemap</a></li>
             </ul>

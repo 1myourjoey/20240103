@@ -16,6 +16,8 @@ import dao.MemberDao;
 import dto.Board;
 import dto.Member;
 
+
+
 /**
  * Servlet implementation class DispatcherServlet
  */
@@ -83,7 +85,7 @@ public class DispatcherServlet extends HttpServlet {
 			if (member != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("member", member);
-				response.sendRedirect("index.jsp"); // 이렇게 보내면 상단의 list로 가서 다시 view까지 실행되는 것
+				response.sendRedirect("index.jsp"); 
 			} else {
 				response.sendRedirect("loginForm.jsp");
 			}
@@ -95,7 +97,36 @@ public class DispatcherServlet extends HttpServlet {
 			
 		} else if (path.equals("/loginForm.do")) { // 위에꺼랑 같은 것
 			response.sendRedirect("loginForm.jsp");
-		} 
 		
-	}
+		}  else if (path.equals("/delete.do")) {
+		    // 게시물의 번호를 가져옴
+		    int num = Integer.parseInt(request.getParameter("num"));
+
+		    // 게시물 삭제 로직 수행
+		    BoardDao dao = BoardDao.getInstance();
+		    int deletedRows = dao.delete(num);
+
+		    if (deletedRows > 0) {
+		        // 삭제 성공 시 리스트 페이지로 리다이렉트
+		        response.sendRedirect("/list.do");
+		    } else {
+		        // 삭제 실패 시 오류 메시지를 설정하고 오류 페이지로 포워딩
+		        request.setAttribute("message", "게시물 삭제에 실패했습니다.");
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/error.jsp");
+		        dispatcher.forward(request, response);
+		    }
+		} else if (path.equals("/write.do")) {
+		    // 글쓰기 폼을 보여주는 페이지로 포워딩
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/write.jsp");
+		    dispatcher.forward(request, response);
+		}
+		else if (path.equals("/update.do")) {
+		    int num = Integer.parseInt(request.getParameter("num"));
+		    String title = request.getParameter("title");
+		    String content = request.getParameter("content");
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/boardUpdateForm.jsp");
+		    dispatcher.forward(request, response);
+		}
+		  
+}
 }

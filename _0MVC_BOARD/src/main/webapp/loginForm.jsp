@@ -12,7 +12,7 @@
 
 <div class="container mt-5">
     <form class="col-md-4 offset-md-4" action="login.do" method="post">
-        <h2 class="mb-4">Login</h2>
+        <h2 class="mb-4" onclick = "toMain()">Login</h2>
         <div class="form-group">
             <label for="id">ID:</label>
             <input type="text" class="form-control" id="id" name="id" required>
@@ -22,7 +22,8 @@
             <input type="text" class="form-control" id="email" name="email" required>
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
-        <input type="button" value="HOME"class="btn btn-primary" onclick="location.href='index.jsp'">
+        <input type="button" value="Join" class="btn btn-primary" onclick="location.href='/_0MVC_BOARD/manage/memberForm.jsp'">
+        <input type="button" value="HOME" class="btn btn-primary" onclick="location.href='index.jsp'">
         
     </form>
 </div>
@@ -31,6 +32,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+<script>
+function toMain(){
+	  window.location.href = "index.jsp";
+}</script>
 </body>
 </html>
