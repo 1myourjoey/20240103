@@ -37,7 +37,7 @@
 
     <div class="mt-4">
         <input type="button" class="btn btn-secondary" value="목록보기" onclick="location.href='list.do'">
-        <input type="button" class="btn btn-warning" value="수정" onclick="location.href='update.do?num=${bd.num}'">
+        <input type="button" class="btn btn-warning" value="수정" onclick="location.href='boardUpdateForm.jsp?num=${bd.num}'">
         <input type="button" class="btn btn-danger" value="삭제" onclick="location.href='deleteForm.jsp?num=${bd.num}'">
     </div>
 </div>

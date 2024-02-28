@@ -83,7 +83,7 @@ public class Board {
 		this.num = num;
 		this.title = title;
 		this.content = content;
-		this.memberno = memberno;
+		this.memberno = memberno ;
 	}
 
 	@Override

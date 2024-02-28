@@ -22,36 +22,35 @@ Member member = (session1 != null) ? (Member) session1.getAttribute("member") : 
 
 <body>
 
-    <header>
+    <header style="background-color: #2B3856; color: white;">
         <div class="inner">
-            <h1><a href="index.jsp">Joey's MVC Project</a></h1>
+            <h1><a href="index.jsp" style="color: white;">Joey's MVC Project</a></h1>
 
             <ul id="gnb">
                
-                <li><a href="list.do">BOARD</a></li>
+                <li><a href="list.do" style="color: white;">BOARD</a></li>
                 
             </ul>
 
             <ul class="util">
-            <li><a href="manage/manage.jsp">MANAGE For ADMIN</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Help</a></li>
+            <li><a href="manage/manage.jsp" style="color: white;">MANAGE For ADMIN</a></li>
+                
                <% if (member != null) { %>
                     <!-- 로그인된 경우 -->
-                    <li><a href="logout.do">Logout</a></li>
+                    <li><a href="logout.do" style="color: white;">Logout</a></li>
                 <% } else { %>
                     <!-- 로그인되지 않은 경우 -->
-                    <li><a href="login.do">Login</a></li>
+                    <li><a href="login.do" style="color: white;">Login</a></li>
                 <% } %>
-                <li><a href="#">Join</a></li>
-                <li><a href="#">Sitemap</a></li>
+                <li><a href="/_0MVC_BOARD/manage/memberForm.jsp" style="color: white;">Join</a></li>
+               
             </ul>
         </div>
     </header>
 
 
     <figure>
-        <video src="img/visual.mp4" autoplay muted loop></video>
+        <video src="img/humpback.mp4" autoplay muted loop></video>
         <div class="inner">
             <h1>MVC Sampling</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
@@ -60,53 +59,11 @@ Member member = (session1 != null) ? (Member) session1.getAttribute("member") : 
         </div>
     </figure>
 
-    <section>
-        <div class="inner">
-            <h1>RECENT NEWS</h1>
-            <div class="wrap">
-                <article>
-                    <div class="pic">
-                        <img src="img/news1.jpg" alt="1ë²ì§¸ ì½íì¸  ì´ë¯¸ì§">
-                    </div>
-                    <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
-                        maiores!</p>
-                </article>
-
-                <article>
-                    <div class="pic">
-                        <img src="img/news2.jpg" alt="2ë²ì§¸ ì½íì¸  ì´ë¯¸ì§">
-                    </div>
-                    <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
-                        maiores!</p>
-                </article>
-
-                <article>
-                    <div class="pic">
-                        <img src="img/news3.jpg" alt="3ë²ì§¸ ì½íì¸  ì´ë¯¸ì§">
-                    </div>
-                    <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
-                        maiores!</p>
-                </article>
-
-                <article>
-                    <div class="pic">
-                        <img src="img/news4.jpg" alt="4ë²ì§¸ ì½íì¸  ì´ë¯¸ì§">
-                    </div>
-                    <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
-                        maiores!</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
+    
     <footer>
         <div class="inner">
             <div class="upper">
-                <h1>DCODELAB</h1>
+                <h1>JOEYSLAB</h1>
                 <ul>
                     <li><a href="#">Policy</a></li>
                     <li><a href="#">Terms</a></li>

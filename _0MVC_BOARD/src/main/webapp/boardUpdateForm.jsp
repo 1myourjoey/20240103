@@ -18,8 +18,10 @@
     String content = null;
 
     if (rs.next()){
+    	num = rs.getInt("num");  // "num" 컬럼 값 받기
         title = rs.getString("title");
         content = rs.getString("content");
+        memberno = rs.getInt("memberno");  // "memberno" 컬럼 값 받기
     }
 %>
 

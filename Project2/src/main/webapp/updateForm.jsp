@@ -1,33 +1,30 @@
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%
-	String mno = request.getParameter("memberno");
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	 Connection conn = DriverManager.getConnection(
-	                "jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
-	 String sql = "select * from member where memberno = ?";
-			 PreparedStatement pstmt = conn.prepareStatement(sql);
-			 pstmt.setInt(1,Integer.parseInt(mno));
-			 ResultSet rs = pstmt.executeQuery();
-			 int memberno = 0;
-			 String id = null;
-			 String email = null;
-			 String name = null;
-			 if (rs.next()){
-				 memberno = rs.getInt("memberno");
-				 id = rs.getString("id");
-				 email = rs.getString("email");
-				 name = rs.getString("name");
-				 
-			 }
-	%>
-	
-	
+<%
+String mno = request.getParameter("memberno");
+Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
+String sql = "select * from member where memberno = ?";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(mno)); 
+ResultSet rs = pstmt.executeQuery();
+int memberno = 0;
+String id = null;
+String email = null;
+String name = null;
+if (rs.next()) {
+	memberno = rs.getInt("memberno");
+	id = rs.getString("id");
+	email = rs.getString("email");
+	name = rs.getString("name");
+}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,26 +39,24 @@
 <body>
 	<div class="container" style="padding-top: 50px">
 		<form action="memberUpdate.jsp" method="post">
-		<div class="mb-3">
-				<label for="membernoInput" class="form-label">회원번호 확인</label> 
-				<input type="text" readOnly name="meberno" value="<%=memberno %>" class="form-control" id="" placeholder="회원번호">
+			<div class="mb-3">
+				<label for="membernoInput" class="form-label">회원번호</label>
+				<input type="text" readonly name="memberno" value="<%=memberno %>" class="form-control" id="membernoInput" placeholder="회원번호">
 			</div>
 			<div class="mb-3">
-				<label for="IDinput" class="form-label">ID</label> 
-				<input type="text" name="id" value="<%=id %>" class="form-control" id="IDinput" placeholder="아이디">
+				<label for="idInput" class="form-label">아이디</label>
+				<input type="text" name="id" value="<%=id %>" class="form-control" id="idInput" placeholder="아이디">
 			</div>
 			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">Email
-					address</label> 
-					<input type="email" name="email" value="<%=email %>" class="form-control"
+				<label for="exampleFormControlInput1" class="form-label">이메일</label>
+				<input type="email" name="email" value="<%=email %>" class="form-control"
 					id="exampleFormControlInput1" placeholder="name@example.com">
 			</div>
 			<div class="mb-3">
-				<label for="nameinput" class="form-label">NAME</label> 
-				<input type="text" name="name" value="<%=name %>" class="form-control" id="nameinput" placeholder="이름">
+				<label for="nameInput" class="form-label">이름</label>
+				<input type="text" name="name" value="<%=name %>" class="form-control" id="nameInput" placeholder="이름">
 			</div>
-			<button class="btn btn-secondary w-100 py-2" type="submit">수정
-				</button>
+			<button class="btn btn-primary">수정</button>
 		</form>
 	</div>
 	<script

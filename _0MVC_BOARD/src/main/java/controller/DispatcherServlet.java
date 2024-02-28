@@ -120,13 +120,7 @@ public class DispatcherServlet extends HttpServlet {
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/write.jsp");
 		    dispatcher.forward(request, response);
 		}
-		else if (path.equals("/update.do")) {
-		    int num = Integer.parseInt(request.getParameter("num"));
-		    String title = request.getParameter("title");
-		    String content = request.getParameter("content");
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("/boardUpdateForm.jsp");
-		    dispatcher.forward(request, response);
-		}
+		
 		  
 }
 }
