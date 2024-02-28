@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +15,7 @@
 
 <div class="container mt-5">
     <form class="col-md-4 offset-md-4" action="login.do" method="post">
-        <h2 class="mb-4" onclick = "toMain()">Login</h2>
+        <h2 class="mb-4" onclick="toMain()">Login</h2>
         <div class="form-group">
             <label for="id">ID:</label>
             <input type="text" class="form-control" id="id" name="id" required>
@@ -21,10 +24,13 @@
             <label for="email">Email:</label>
             <input type="text" class="form-control" id="email" name="email" required>
         </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="ck" name="ck">
+            <label class="form-check-label" for="ck">Remember ID</label>
+        </div>
         <button type="submit" class="btn btn-primary">로그인</button>
         <input type="button" value="Join" class="btn btn-primary" onclick="location.href='/_0MVC_BOARD/manage/memberForm.jsp'">
         <input type="button" value="HOME" class="btn btn-primary" onclick="location.href='index.jsp'">
-        
     </form>
 </div>
 
@@ -38,3 +44,16 @@ function toMain(){
 }</script>
 </body>
 </html>
+ <%
+    String id = "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+    	for (Cookie cookie : cookies) {
+    		if (cookie.getName().equals("id")) {
+    			id = cookie.getValue();
+    			break;
+    		}
+    	}
+    }
+    
+    %>

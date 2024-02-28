@@ -79,17 +79,18 @@ public class DispatcherServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else if (path.equals("/login.do")) { // 로그인 부분
-			String id = request.getParameter("id");
-			String email = request.getParameter("email");
-			Member member = MemberDao.getInstance().selectForLogin(id, email);
-			if (member != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("member", member);
-				response.sendRedirect("index.jsp"); 
-			} else {
-				response.sendRedirect("loginForm.jsp");
-			}
-
+		    String id = request.getParameter("id");
+		    String email = request.getParameter("email");
+		    Member member = MemberDao.getInstance().selectForLogin(id, email);
+		    if (member != null) {
+		        HttpSession session = request.getSession();
+		        session.setAttribute("member", member);
+		        // 세션에 MEMBERNO 저장
+		        session.setAttribute("MEMBERNO", member.getMemberno());
+		        response.sendRedirect("index.jsp"); 
+		    } else {
+		        response.sendRedirect("loginForm.jsp");
+		    }
 		} else if (path.equals("/logout.do")) {
 			HttpSession session = request.getSession(false);
 			session.invalidate();

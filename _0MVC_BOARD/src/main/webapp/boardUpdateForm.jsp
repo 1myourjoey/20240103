@@ -1,3 +1,4 @@
+<%@page import="dto.Member"%>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.DriverManager" %>
@@ -22,6 +23,21 @@
         title = rs.getString("title");
         content = rs.getString("content");
         memberno = rs.getInt("memberno");  // "memberno" 컬럼 값 받기
+    }
+    Member loggedMember = (Member) session.getAttribute("member");
+
+    // 로그인한 사용자와 글 작성자가 같은지 확인
+    boolean Author = (loggedMember != null && memberno == loggedMember.getMemberno());
+    
+    // 작성자와 로그인한 사용자가 다르면 수정 불가능하도록 처리
+      if (!Author) {
+%>
+        <script>
+            alert("본인이 아니면 수정이 불가능합니다.");
+            window.history.back(); // 뒤로 가기
+        </script>
+<%
+        return;
     }
 %>
 

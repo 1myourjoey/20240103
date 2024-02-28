@@ -1,3 +1,4 @@
+<%@page import="dto.Member"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -22,7 +23,21 @@ if (rs.next()) {
     email = rs.getString("email");
     name = rs.getString("name");
 }
+//세션에서 사용자 정보 가져오기
+Member loggedInMember = (Member) session.getAttribute("member");
+
+//로그인한 사용자가 관리자가 아니면 팝업 창을 띄우고 로그인 페이지로 리다이렉트
+if (loggedInMember == null || !"admin".equals(loggedInMember.getId())) {
 %>
+ <script>
+     alert('관리자만 접근할 수 있는 페이지입니다.');
+     window.open('/_0MVC_BOARD/loginForm.do', '_self');
+ </script>
+<%
+ return;
+}
+%>
+
 
 <!DOCTYPE html>
 <html>

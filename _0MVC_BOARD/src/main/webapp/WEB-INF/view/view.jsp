@@ -6,13 +6,31 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>게시물 상세보기</title>
+    <!-- 추가된 부분: 커스텀 스타일 -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .table {
+            background-color: #ffffff;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-<body style="background-color: #f8f9fa;">
+<body>
 
-<div class="container mt-4">
-    <h2 class="mb-4">게시물 상세보기</h2>
+<div class="container">
+    <h2 class="mb-4 text-center">게시물 상세보기</h2>
 
-    <table class="table table-bordered" style="background-color: #ffffff;">
+    <table class="table table-bordered">
         <tr>
             <th style="width: 20%;">제목</th>
             <td>${bd.title}</td>
@@ -35,7 +53,7 @@
         </tr>
     </table>
 
-    <div class="mt-4">
+    <div class="mt-4 btn-container text-center">
         <input type="button" class="btn btn-secondary" value="목록보기" onclick="location.href='list.do'">
         <input type="button" class="btn btn-warning" value="수정" onclick="location.href='boardUpdateForm.jsp?num=${bd.num}'">
         <input type="button" class="btn btn-danger" value="삭제" onclick="location.href='deleteForm.jsp?num=${bd.num}'">

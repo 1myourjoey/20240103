@@ -34,7 +34,7 @@ ResultSet rs = pstmt.executeQuery();
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap demo</title>
+<title>Manage Member</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -42,42 +42,25 @@ ResultSet rs = pstmt.executeQuery();
 	crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/_0MVC_BOARD/index.jsp">FOR THE TEST</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/_0MVC_BOARD/index.jsp">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2B3856; justify-content: center;">
+    <div class="container-fluid text-center">
+        <a class="navbar-brand" href="/_0MVC_BOARD/index.jsp" style="color: white;">
+            <h1 class="text-center">Page for Admin</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="/_0MVC_BOARD/index.jsp" style="color: white;">Home</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
+
 
 	<div class="container" style="padding-top: 50px">
 		<table class="table table-bordered table-hover">
@@ -100,7 +83,8 @@ while (rs.next()) {
 					<td><%=rs.getString("id") %></td>
 					<td><%=rs.getString("email") %></td>
 					<td><%=rs.getString("name") %></td>
-					<td><a href="memberUpdateForm.jsp?memberno=<%=rs.getString("memberno") %>">수정</a></td>
+					<td><button class ="btn btn-secondary" onClick='location.href="memberUpdateForm.jsp?memberno=<%=rs.getString("memberno") %>"'>수정</button>
+					
 					<td><button class="btn btn-primary" onClick='location.href="memberDelete.jsp?memberno=<%=rs.getString("memberno") %>"'>삭제</button></td>
 				</tr>
 <%
@@ -108,7 +92,7 @@ while (rs.next()) {
 %>				
 			</tbody>
 		</table>
-		<button class="btn btn-primary" onClick="move()">회원가입</button>
+		<button class="btn btn-primary ml-auto" onClick="move()">회원등록</button>
 	</div>
 
 	<script

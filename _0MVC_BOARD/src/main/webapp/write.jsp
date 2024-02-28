@@ -42,39 +42,75 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>글쓰기</title>
     <style>
-        table { width:680px; text-align:center; }
-        th    { width:100px; background-color:cyan; }
-        input[type=text], textarea { width:100%; }
+        body {
+            background-color: #2B3856;
+        }
+
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .form-table {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-table th {
+            width: 20%;
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .form-table td {
+            width: 80%;
+        }
+
+        textarea {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 
-<form method="post" action="insert.jsp">
-    <table>
-        <tr>
-            <th>제목</th>
-            <td><input type="text" name="title" maxlength="80" value="<%=title%>"></td>
-        </tr>
-        
-        <tr>
-            <th>작성자</th>
-            <td><%=loggedInMember.getId()%></td>
-        </tr>
+<div class="container">
+    <h2 class="mb-4"></h2>
 
-        <tr>
-            <th>내용</th>
-            <td><textarea name="content" rows="10"><%=content%></textarea></td>
-        </tr>
-    </table>
+    <form method="post" action="<%=action%>">
+        <table class="table table-bordered form-table">
+            <tr>
+                <th>제목</th>
+                <td><input type="text" name="title" maxlength="80" class="form-control" value="<%=title%>"></td>
+            </tr>
+            
+            <tr>
+                <th>작성자</th>
+                <td style="color: white;"><%=loggedInMember.getId()%></td>
+            </tr>
 
-    <br>
-    <input type="submit" value="저장">
-    <input type="button" value="취소" onclick="history.back()">
-</form>
+            <tr>
+                <th>내용</th>
+                <td><textarea name="content" rows="10" class="form-control"><%=content%></textarea></td>
+            </tr>
+        </table>
+
+        <br>
+        <input type="submit" class="btn btn-primary" value="저장">
+        <input type="button" class="btn btn-secondary" value="취소" onclick="history.back()">
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
