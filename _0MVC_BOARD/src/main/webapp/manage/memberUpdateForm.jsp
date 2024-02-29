@@ -57,7 +57,7 @@ if (loggedInMember == null || !"admin".equals(loggedInMember.getId())) {
         </div>
         <div class="mb-3">
             <label for="IDinput" class="form-label">ID</label>
-            <input type="text" name="id" value="<%=id %>" class="form-control" id="IDinput" placeholder="아이디">
+            <input type="text" readOnly name="id" value="<%=id %>" class="form-control" id="IDinput" placeholder="아이디">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address</label>

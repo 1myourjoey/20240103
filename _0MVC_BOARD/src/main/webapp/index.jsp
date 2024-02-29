@@ -40,7 +40,7 @@ Member member = (session1 != null) ? (Member) session1.getAttribute("member") : 
                     <li><a href="logout.do" style="color: white;">Logout</a></li>
                 <% } else { %>
                     <!-- 로그인되지 않은 경우 -->
-                    <li><a href="login.do" style="color: white;">Login</a></li>
+                    <li><a href="loginForm.jsp" style="color: white;">Login</a></li>
                 <% } %>
                 <li><a href="/_0MVC_BOARD/manage/memberForm.jsp" style="color: white;">Join</a></li>
                

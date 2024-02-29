@@ -21,7 +21,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from member");
+			rs = stmt.executeQuery("select count(*) from board");
 			rs.next();
 			return rs.getInt(1);
 		} finally {

@@ -90,7 +90,7 @@ public class MemberDao {
 		return 0;
 	}
     public int update(Member member) {
-        String sql = "update member set email = ?, name = ? where id = ?";
+        String sql = "update member set email = ?, name = ? where memberno = ?";
         try (
                 PreparedStatement pstmt = conn.prepareStatement(sql);
         ) {
@@ -98,7 +98,7 @@ public class MemberDao {
             // 쿼리 실행
             pstmt.setString(1, member.getEmail());
             pstmt.setString(2, member.getName());
-            pstmt.setString(3, member.getId());
+            pstmt.setInt(3, member.getMemberno());
             return pstmt.executeUpdate();
 
         } catch (Exception e) {

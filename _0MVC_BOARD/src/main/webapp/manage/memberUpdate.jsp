@@ -15,12 +15,12 @@ String email = request.getParameter("email");
 String name = request.getParameter("name");
 
 if (memberno != null && !memberno.isEmpty()) {
-    String sql = "update member set id=?, email=?, name=? where memberno=?";
+    String sql = "update member set email=?, name=? where memberno=?";
     PreparedStatement pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1, id);
-    pstmt.setString(2, email);
-    pstmt.setString(3, name);
-    pstmt.setInt(4, Integer.parseInt(memberno));
+    
+    pstmt.setString(1, email);
+    pstmt.setString(2, name);
+    pstmt.setInt(3, Integer.parseInt(memberno));
     
     int res = pstmt.executeUpdate();
     response.sendRedirect("manage.jsp");

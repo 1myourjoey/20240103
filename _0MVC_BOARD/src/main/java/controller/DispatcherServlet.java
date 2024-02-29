@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,6 +82,23 @@ public class DispatcherServlet extends HttpServlet {
 		} else if (path.equals("/login.do")) { // 로그인 부분
 		    String id = request.getParameter("id");
 		    String email = request.getParameter("email");
+		    String ck =request.getParameter("ck");
+		    if (ck != null && ck.equals("on")) { // 쿠키 생성
+		    	System.out.println("dsd");
+		        Cookie cookie = new Cookie("id", id);
+		        cookie.setMaxAge(60 * 24); 
+
+		        response.addCookie(cookie);
+		        
+		    } 
+		    else { // 쿠키 삭제
+		    	System.out.println("가나다");
+		        Cookie cookie = new Cookie("id", null);
+		        cookie.setMaxAge(0); 
+
+		        response.addCookie(cookie);
+		    }
+		    
 		    Member member = MemberDao.getInstance().selectForLogin(id, email);
 		    if (member != null) {
 		        HttpSession session = request.getSession();
@@ -88,6 +106,10 @@ public class DispatcherServlet extends HttpServlet {
 		        // 세션에 MEMBERNO 저장
 		        session.setAttribute("MEMBERNO", member.getMemberno());
 		        response.sendRedirect("index.jsp"); 
+		        
+//		        Cookie cookie = new Cookie("id", id);
+//		        cookie.setMaxAge(60 * 24); // 60분 * 24시간
+//		        response.addCookie(cookie);
 		    } else {
 		        response.sendRedirect("loginForm.jsp");
 		    }
@@ -118,7 +140,7 @@ public class DispatcherServlet extends HttpServlet {
 		    }
 		} else if (path.equals("/write.do")) {
 		    // 글쓰기 폼을 보여주는 페이지로 포워딩
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/write.jsp");
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("write.jsp");
 		    dispatcher.forward(request, response);
 		}
 		
