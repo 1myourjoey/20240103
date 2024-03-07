@@ -52,6 +52,7 @@
     <div class="container" style="padding-top: 50px">
         <form action="boardUpdate.jsp" method="post">
             <input type="hidden" name="num" value="<%=num%>"> <!-- 숨겨진 필드에 글 번호 전달 -->
+            <input type="hidden" name="memberno" value="<%=memberno%>"> <!-- 숨겨진 필드에 글 번호 전달 -->
             <div class="mb-3">
                 <label for="titleInput" class="form-label">Title</label> 
                 <input type="text" name="title" value="<%=title%>" class="form-control" id="title" placeholder="제목">

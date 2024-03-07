@@ -24,6 +24,7 @@
         memberno = Integer.parseInt(membernoParam);
     }
 
+    System.out.println("memberno="+memberno);
     String title = request.getParameter("title");
     String content = request.getParameter("content");
 

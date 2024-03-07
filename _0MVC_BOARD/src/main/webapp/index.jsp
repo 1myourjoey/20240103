@@ -24,7 +24,7 @@ Member member = (session1 != null) ? (Member) session1.getAttribute("member") : 
 
     <header style="background-color: #2B3856; color: white;">
         <div class="inner">
-            <h1><a href="index.jsp" style="color: white;">Joey's MVC Project</a></h1>
+            <h1><a href="index.jsp" style="color: white;">Joey's Project</a></h1>
 
             <ul id="gnb">
                
@@ -52,7 +52,7 @@ Member member = (session1 != null) ? (Member) session1.getAttribute("member") : 
     <figure>
         <video src="img/humpback.mp4" autoplay muted loop></video>
         <div class="inner">
-            <h1>MVC Sampling</h1>
+            <h1>BOARD Sampling</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
                 Id praesentium molestias similique quaerat magni facere in a? Adipisci, possimus reprehenderit!</p>
             <a href="#">view detail</a>
