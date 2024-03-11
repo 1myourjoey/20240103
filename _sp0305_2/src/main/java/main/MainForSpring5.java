@@ -8,7 +8,9 @@ import java.io.InputStreamReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import config.AppConfImport;
 import config.AppCtx;
+import config.AppCtxNoMemberPrinterBean;
 import spring.ChangePasswordService;
 import spring.DuplicateMemberException;
 import spring.MemberInfoPrinter;
@@ -20,14 +22,14 @@ import spring.VersionPrinter;
 import spring.WrongIdPasswordException;
 import spring.MemberPrinter;
 
-public class MainForSpring {
+public class MainForSpring5 {
 	
 	private static ApplicationContext ctx = null;
 	
 	
 	public static void main (String [] args) throws IOException {
 		
-		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		ctx = new AnnotationConfigApplicationContext(AppCtxNoMemberPrinterBean.class);
 		
 		BufferedReader reader = 
 				new BufferedReader(new InputStreamReader(System.in));
