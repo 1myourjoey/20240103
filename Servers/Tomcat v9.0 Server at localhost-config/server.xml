@@ -176,7 +176,9 @@
       <Context docBase="_sp0307" path="/_sp0307" reloadable="true" source="org.eclipse.jst.jee.server:_sp0307"/>
       <Context docBase="_sp0313SpingMVC" path="/_sp0313SpringMVC" reloadable="true" source="org.eclipse.jst.jee.server:_sp0313SpingMVC"/>
       <Context docBase="_sp0313" path="/_sp0313" reloadable="true" source="org.eclipse.jst.jee.server:_sp0313"/>
-      <Context docBase="_sp0312" path="/_sp0312" reloadable="true" source="org.eclipse.jst.jee.server:_sp0312"/></Host>
+      <Context docBase="_sp0312" path="/_sp0312" reloadable="true" source="org.eclipse.jst.jee.server:_sp0312"/>
+      <Context docBase="_sp0314" path="/_sp0314" reloadable="true" source="org.eclipse.jst.jee.server:_sp0314"/>
+      <Context docBase="_sp0314_MvcPrac" path="/_sp0314_MvcPrac" reloadable="true" source="org.eclipse.jst.jee.server:_sp0314_MvcPrac"/></Host>
     </Engine>
   </Service>
 </Server>
