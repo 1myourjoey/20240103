@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import controller.MyController;
+import dao.BoardDao;
 import dao.MemberDao;
 import service.GetMemberNumService;
 
@@ -22,5 +23,9 @@ public class ControllerConfig {
 	@Bean
 	public GetMemberNumService getMemberNumService() {
 		return new GetMemberNumService();
+	}
+	@Bean
+	public BoardDao boardDao() {
+		return new BoardDao();
 	}
 }

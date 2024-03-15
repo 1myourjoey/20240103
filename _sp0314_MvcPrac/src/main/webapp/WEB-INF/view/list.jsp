@@ -96,7 +96,7 @@
                 <tr>
                     <td>${board.num}</td>
                     <td style="text-align:left;">
-                        <a href="view.do?num=${board.num}">
+                        <a href="selectOne?num=${board.num}">
                             ${board.title}
                         </a>
                     </td>

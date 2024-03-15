@@ -10,7 +10,7 @@ import dto.BoardDto;
 
 @Service
 public class BoardService {
-
+	@Autowired
     private final BoardDao boardDao;
 
     @Autowired
@@ -20,6 +20,10 @@ public class BoardService {
 
     public List<BoardDto> getAllBoardList() { // 여기 이름은 내 마음대로 설정
         return boardDao.selectAllList();
+    }
+    
+    public BoardDto selectOne(int num, boolean hitsIncreased){
+    	return boardDao.selectOne(num, hitsIncreased);
     }
    
 }

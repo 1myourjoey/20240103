@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action ="result">
+<form action ="result" method="post">
 <input type ="text" name = "id" placeholder = "ID">
 <input type ="email" name = "email" placeholder = "EMAIL">
 <input type = "submit" value ="PUSH">
