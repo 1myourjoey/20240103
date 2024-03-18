@@ -178,7 +178,7 @@
       <Context docBase="_sp0313" path="/_sp0313" reloadable="true" source="org.eclipse.jst.jee.server:_sp0313"/>
       <Context docBase="_sp0312" path="/_sp0312" reloadable="true" source="org.eclipse.jst.jee.server:_sp0312"/>
       <Context docBase="_sp0314" path="/_sp0314" reloadable="true" source="org.eclipse.jst.jee.server:_sp0314"/>
-      <Context docBase="_sp0314_MvcPrac" path="/_sp0314_MvcPrac" reloadable="true" source="org.eclipse.jst.jee.server:_sp0314_MvcPrac"/></Host>
+      <Context docBase="_sp0314_MvcPrac" path="/_sp0314_MvcPrac" reloadable="true" source="org.eclipse.jst.jee.server:_sp0314_MvcPrac"/><Context docBase="todoList_servlet" path="/todoList_servlet" reloadable="true" source="org.eclipse.jst.jee.server:todoList_servlet"/></Host>
     </Engine>
   </Service>
 </Server>
